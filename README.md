@@ -3,7 +3,8 @@
 Path 4.2 menu using CoreAnimation in Swift. Inspired by https://github.com/levey/AwesomeMenu
 
 ##Screenshot
-![PathMenu](https://raw.githubusercontent.com/pixyzehn/PathMenu/master/Assets/PathMenu-Sample.gif)
+![PathMenu-Sample](https://raw.githubusercontent.com/pixyzehn/PathMenu/master/Assets/PathMenu-Sample-Demo.gif)
+![PathMenu](https://raw.githubusercontent.com/pixyzehn/PathMenu/master/Assets/PathMenu-Demo.gif)
 
 ##How to use it?
 Copy & paste the PathMenu.swift and PathMenuItem.swift into your project. 
