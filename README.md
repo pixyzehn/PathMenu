@@ -6,8 +6,11 @@ Path 4.2 menu using CoreAnimation in Swift. Inspired by https://github.com/levey
 ![PathMenu](https://raw.githubusercontent.com/pixyzehn/PathMenu/master/Assets/PathMenu-Sample.gif)
 
 ##How to use it?
-Copy & paste the PathMenu.swift and PathMenuItem,swift into your project.
-Create the PathMenu by setting up the PathMenuItem:
+Copy & paste the PathMenu.swift and PathMenuItem.swift into your project. 
+
+Create the PathMenu by setting up the PathMenuItem.
+
+For the details, please refer to PathMenu-Sample.
 
 ```Swift
 let storyMenuItemImage: UIImage = UIImage(named: "bg-menuitem")!
@@ -45,7 +48,8 @@ self.window?.makeKeyAndVisible()
 The following is the options about animation and position.
 
 PathMenu-Sample project  is similar to real Path’s menu.
-quote from the PathMenu-Sample project.
+
+Quote from the PathMenu-Sample project.
 
 ```Swift
 menu.startPoint = CGPointMake(UIScreen.mainScreen().bounds.width/2, self.view.frame.size.height - 30.0)
@@ -58,9 +62,29 @@ menu.endRadius = 100.0
 menu.animationDuration = 0.5
 ```
 
-##Delegate protocol (PathMenuDelegate)
+The order is farRadius→nearRadius→endRadius.
+
+Default values are as follows:
 
 ```Swift
+startPoint = CGPointMake(UIScreen.mainScreen().bounds.width/2, UIScreen.mainScreen().bounds.height/2)
+timeOffset = 0.036
+rotateAngle = 0.0
+menuWholeAngle = CGFloat(M_PI) * 2
+expandRotation = -CGFloat(M_PI) * 2
+closeRotation = CGFloat(M_PI) * 2
+animationDuration = 0.5
+expandRotateAnimationDuration = 2.0
+closeRotateAnimationDuration = 1.0
+startMenuAnimationDuration = 0.2
+nearRadius = 110.0
+endRadius = 120.0
+farRadius = 140.0
+```
+
+##Delegate protocol (PathMenuDelegate)
+
+```
 optional func pathMenu(menu: PathMenu, didSelectIndex idx: Int)
 optional func pathMenuDidFinishAnimationClose(menu: PathMenu)
 optional func pathMenuDidFinishAnimationOpen(menu: PathMenu)
