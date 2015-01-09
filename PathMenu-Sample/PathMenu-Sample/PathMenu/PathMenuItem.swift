@@ -54,7 +54,9 @@ class PathMenuItem: UIImageView {
     }
 
     private func ScaleRect(rect: CGRect, n: CGFloat) -> CGRect {
-        return CGRectMake( CGFloat((rect.size.width - rect.size.width * n)/2), CGFloat((rect.size.height - rect.size.height * n)/2), CGFloat(rect.size.width * n), CGFloat(rect.size.height * n))
+        let width = rect.size.width
+        let height = rect.size.height
+        return CGRectMake(CGFloat((width - width * n)/2), CGFloat((height - height * n)/2), CGFloat(width * n), CGFloat(height * n))
     }
 
     // UIView's methods
@@ -65,10 +67,10 @@ class PathMenuItem: UIImageView {
             self.bounds = CGRectMake(0, 0, image.size.width, image.size.height)
         }
         
-        if let cimgView = self.contentImageView {
-            let width: CGFloat! = cimgView.image?.size.width
-            let height: CGFloat! = cimgView.image?.size.height
-            cimgView.frame = CGRectMake(self.bounds.size.width/2 - width/2, self.bounds.size.height/2 - height/2, width, height)
+        if let imageView = self.contentImageView {
+            let width: CGFloat! = imageView.image?.size.width
+            let height: CGFloat! = imageView.image?.size.height
+            imageView.frame = CGRectMake(self.bounds.size.width/2 - width/2, self.bounds.size.height/2 - height/2, width, height)
         }
     }
     

@@ -84,7 +84,6 @@ class PathMenu: UIView, PathMenuItemDelegate {
         self.startButton.center = self.startPoint
         self.addSubview(self.startButton)
     }
-    
 
     var _menusArray: [PathMenuItem] = []
     var menusArray: [PathMenuItem] {
@@ -130,9 +129,6 @@ class PathMenu: UIView, PathMenuItemDelegate {
     var nearRadius: CGFloat!
     var endRadius: CGFloat!
     var farRadius: CGFloat!
-    
-    var rotateAddButtonl: (() -> Void)?
-    var tapHandler: (() -> Void)?
     
     var motionState: State?
     
@@ -289,6 +285,7 @@ class PathMenu: UIView, PathMenuItemDelegate {
     }
     
     func expand() {
+        
         if self.flag == self.menusArray.count {
             self.timer?.invalidate()
             self.timer = nil
@@ -330,6 +327,7 @@ class PathMenu: UIView, PathMenuItemDelegate {
     }
     
     func close() {
+        
         if (self.flag! == -1)
         {
             self.timer?.invalidate()
