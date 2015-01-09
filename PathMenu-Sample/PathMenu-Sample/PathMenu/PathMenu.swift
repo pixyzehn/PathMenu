@@ -40,7 +40,12 @@ private func RotateCGPointAroundCenter(point: CGPoint, center:CGPoint, angle: CG
 }
 
 class PathMenu: UIView, PathMenuItemDelegate {
-    
+   
+    enum State {
+        case Close // Intial state
+        case Expand
+    }
+        
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
@@ -53,6 +58,7 @@ class PathMenu: UIView, PathMenuItemDelegate {
         self.init(frame: frame)
         
         self.backgroundColor = UIColor.clearColor()
+        
         self.timeOffset = kPathMenuDefaultTimeOffset
         self.rotateAngle = kPathMenuDefaultRotateAngle
         self.menuWholeAngle = kPathMenuDefaultMenuWholeAngle
@@ -71,12 +77,15 @@ class PathMenu: UIView, PathMenuItemDelegate {
  
         self.menusArray = aMenusArray!
         
+        self.motionState = State.Close
+        
         self.startButton = startItem!
         self.startButton.delegate = self
         self.startButton.center = self.startPoint
         self.addSubview(self.startButton)
     }
     
+
     var _menusArray: [PathMenuItem] = []
     var menusArray: [PathMenuItem] {
         get {
@@ -92,9 +101,6 @@ class PathMenu: UIView, PathMenuItemDelegate {
         }
     }
     
-    var flag: Int?
-    var timer: NSTimer?
-    
     var _startButton: PathMenuItem = PathMenuItem(frame: CGRectZero)
     var startButton: PathMenuItem {
         get {
@@ -106,8 +112,9 @@ class PathMenu: UIView, PathMenuItemDelegate {
     }
     
     weak var delegate: PathMenuDelegate!
-    
-    var isAnimating: Bool = false
+
+    var flag: Int?
+    var timer: NSTimer?
     
     var timeOffset: CGFloat!
     var rotateAngle: CGFloat!
@@ -124,37 +131,10 @@ class PathMenu: UIView, PathMenuItemDelegate {
     var endRadius: CGFloat!
     var farRadius: CGFloat!
     
-    var _expanding: Bool = false
-    var expanding: Bool {
-        get {
-            return self._expanding
-        }
-        set {
-            self._expanding = newValue
- 
-            if (self._expanding) {
-                self.setMenu()
-                self.delegate?.pathMenuWillAnimateOpen?(self)
-            } else {
-                self.delegate?.pathMenuWillAnimateClose?(self)
-            }
-            
-            if let rotateAddButton = self.rotateAddButton {
-                let angle: CGFloat = self.expanding ?  CGFloat(M_PI_4) + CGFloat(M_PI) : 0.0
-                UIView.animateWithDuration(Double(self.startMenuAnimationDuration!), animations: { () -> Void in
-                    self.startButton.transform = CGAffineTransformMakeRotation(angle)
-                })
-            }
-            
-            if (timer == nil) {
-                self.flag = self.expanding ? 0 : (self.menusArray.count - 1)
-                var selector: Selector = self.expanding ? "expand" : "close"
-                self.timer = NSTimer.scheduledTimerWithTimeInterval(Double(timeOffset!), target: self, selector: selector, userInfo: nil, repeats: true)
-                NSRunLoop.currentRunLoop().addTimer(self.timer!, forMode: NSRunLoopCommonModes)
-                self.isAnimating = true
-            }
-        }
-    }
+    var rotateAddButtonl: (() -> Void)?
+    var tapHandler: (() -> Void)?
+    
+    var motionState: State?
     
     var _startPoint: CGPoint = CGPointZero
     var startPoint: CGPoint {
@@ -209,13 +189,10 @@ class PathMenu: UIView, PathMenuItemDelegate {
     // UIView's methods
     
     override func pointInside(point: CGPoint, withEvent event: UIEvent?) -> Bool {
-        if self.isAnimating {
-            return false
-        }
-
-        if true == self.expanding {
+        if self.motionState == State.Expand {
             return true
         } else {
+            // Close
             return CGRectContainsPoint(self.startButton.frame, point)
         }
     }
@@ -234,18 +211,19 @@ class PathMenu: UIView, PathMenuItemDelegate {
     // UIGestureRecognizer
     
     override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
-        self.expanding = !self.expanding
+        self.handleTap()
     }
     
     // PathMenuItemDelegate
     
     func PathMenuItemTouchesBegan(item: PathMenuItem) {
         if (item == self.startButton) {
-            self.expanding = !self.expanding
+            self.handleTap()
         }
     }
     
     func PathMenuItemTouchesEnd(item:PathMenuItem) {
+        
         if (item == self.startButton) {
             return
         }
@@ -264,14 +242,10 @@ class PathMenu: UIView, PathMenuItemDelegate {
             otherItem.center = otherItem.startPoint!
         }
         
-        if (item == startButton) {
-            self.expanding = false
-        } else {
-            self._expanding = false
-            self.delegate?.pathMenuWillAnimateClose?(self)
-        }
+        self.motionState = State.Close
+        self.delegate?.pathMenuWillAnimateClose?(self)
         
-        let angle: CGFloat = self.expanding ? CGFloat(M_PI_4) + CGFloat(M_PI) : 0.0
+        let angle: CGFloat = self.motionState == State.Expand ? CGFloat(M_PI_4) + CGFloat(M_PI) : 0.0
         UIView.animateWithDuration(Double(self.startMenuAnimationDuration!), animations: {() -> Void in
             self.startButton.transform = CGAffineTransformMakeRotation(angle)
         })
@@ -281,9 +255,41 @@ class PathMenu: UIView, PathMenuItemDelegate {
     
     // Animation, Position
     
+    func handleTap() {
+        var state = self.motionState!
+        var selector: Selector?
+        var angle: CGFloat?
+        
+        switch state {
+        case .Close:
+            self.setMenu()
+            self.delegate?.pathMenuWillAnimateOpen?(self)
+            selector = "expand"
+            self.flag = 0
+            self.motionState = State.Expand
+            angle = CGFloat(M_PI_4) + CGFloat(M_PI)
+        case .Expand:
+            self.delegate?.pathMenuWillAnimateClose?(self)
+            selector = "close"
+            self.flag = self.menusArray.count - 1
+            self.motionState = State.Close
+            angle = 0.0
+        }
+        
+        if let rotateAddButton = self.rotateAddButton {
+            UIView.animateWithDuration(Double(self.startMenuAnimationDuration!), animations: { () -> Void in
+                self.startButton.transform = CGAffineTransformMakeRotation(angle!)
+            })
+        }
+        
+        if (timer == nil) {
+            self.timer = NSTimer.scheduledTimerWithTimeInterval(Double(timeOffset!), target: self, selector: selector!, userInfo: nil, repeats: true)
+            NSRunLoop.currentRunLoop().addTimer(self.timer!, forMode: NSRunLoopCommonModes)
+        }
+    }
+    
     func expand() {
         if self.flag == self.menusArray.count {
-            self.isAnimating = false
             self.timer?.invalidate()
             self.timer = nil
             return
@@ -326,7 +332,6 @@ class PathMenu: UIView, PathMenuItemDelegate {
     func close() {
         if (self.flag! == -1)
         {
-            self.isAnimating = false
             self.timer?.invalidate()
             self.timer = nil
             return

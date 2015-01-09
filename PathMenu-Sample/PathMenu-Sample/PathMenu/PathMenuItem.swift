@@ -57,7 +57,7 @@ class PathMenuItem: UIImageView {
         return CGRectMake( CGFloat((rect.size.width - rect.size.width * n)/2), CGFloat((rect.size.height - rect.size.height * n)/2), CGFloat(rect.size.width * n), CGFloat(rect.size.height * n))
     }
 
-// - UIView's methods
+    // UIView's methods
     
     override func layoutSubviews() {
         super.layoutSubviews()
