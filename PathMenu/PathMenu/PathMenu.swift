@@ -370,6 +370,7 @@ class PathMenu: UIView, PathMenuItemDelegate {
     
     func setMenu() {
         let count: Int = self.menusArray.count
+        var denominator: Int?
         
         for (var i = 0; i < self.menusArray.count; i++) {
             var item: PathMenuItem = self.menusArray[i]
@@ -381,18 +382,24 @@ class PathMenu: UIView, PathMenuItemDelegate {
                 menuWholeAngle = menuWholeAngle! - menuWholeAngle! / CGFloat(count)
             }
             
-            let i1 = Float(self.endRadius) * sinf(Float(i) * Float(menuWholeAngle!) / Float(count - 1))
-            let i2 = Float(self.endRadius) * cosf(Float(i) * Float(menuWholeAngle!) / Float(count - 1))
+            if count == 1 {
+                denominator = 1
+            } else {
+                denominator = count - 1
+            }
+            
+            let i1 = Float(self.endRadius) * sinf(Float(i) * Float(menuWholeAngle!) / Float(denominator!))
+            let i2 = Float(self.endRadius) * cosf(Float(i) * Float(menuWholeAngle!) / Float(denominator!))
             let endPoint: CGPoint = CGPointMake(startPoint.x + CGFloat(i1), startPoint.y - CGFloat(i2))
             item.endPoint = RotateCGPointAroundCenter(endPoint, startPoint, rotateAngle!)
             
-            let j1 = Float(self.nearRadius) * sinf(Float(i) * Float(menuWholeAngle!) / Float(count - 1))
-            let j2 = Float(self.nearRadius) * cosf(Float(i) * Float(menuWholeAngle!) / Float(count - 1))
+            let j1 = Float(self.nearRadius) * sinf(Float(i) * Float(menuWholeAngle!) / Float(denominator!))
+            let j2 = Float(self.nearRadius) * cosf(Float(i) * Float(menuWholeAngle!) / Float(denominator!))
             let nearPoint: CGPoint = CGPointMake(startPoint.x + CGFloat(j1), startPoint.y - CGFloat(j2))
             item.nearPoint = RotateCGPointAroundCenter(nearPoint, startPoint, rotateAngle!)
 
-            let k1 = Float(self.farRadius) * sinf(Float(i) * Float(menuWholeAngle!) / Float(count - 1))
-            let k2 = Float(self.farRadius) * cosf(Float(i) * Float(menuWholeAngle!) / Float(count - 1))
+            let k1 = Float(self.farRadius) * sinf(Float(i) * Float(menuWholeAngle!) / Float(denominator!))
+            let k2 = Float(self.farRadius) * cosf(Float(i) * Float(menuWholeAngle!) / Float(denominator!))
             let farPoint: CGPoint = CGPointMake(startPoint.x + CGFloat(k1), startPoint.y - CGFloat(k2))
             item.farPoint = RotateCGPointAroundCenter(farPoint, startPoint, rotateAngle!)
             
