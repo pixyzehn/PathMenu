@@ -93,6 +93,10 @@ optional func pathMenuWillAnimateOpen(menu: PathMenu)
 optional func pathMenuWillAnimateClose(menu: PathMenu)
 ```
 
-##LICENSE
+## Licence
 
-PathMenu is available under the MIT license. See the LICENSE.txt file for more info.
+[MIT](https://github.com/pixyzehn/PathMenu/blob/master/LICENSE.txt)
+
+## Author
+
+[pixyzehn](https://github.com/pixyzehn)
