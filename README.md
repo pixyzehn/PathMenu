@@ -7,15 +7,23 @@ Path 4.2 menu using CoreAnimation in Swift. Inspired by https://github.com/levey
 ![PathMenu](https://raw.githubusercontent.com/pixyzehn/PathMenu/master/Assets/PathMenu-Demo.gif)
 
 ##Installation
+
 The easiest way to get started is to use [CocoaPods](http://cocoapods.org/). Add the following line to your Podfile:
 
 ```ruby
+platform :ios, '8.0'
 use_frameworks!
+# The following is a Library of Swift.
 pod 'PathMenu'
 ```
 
+Then, run the following command:
+
+```ruby
+pod install
+```
+
 ##How to use it?
-Copy & paste the PathMenu.swift and PathMenuItem.swift into your project.
 
 Create the PathMenu by setting up the PathMenuItem.
 

@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-@objc protocol PathMenuDelegate:NSObjectProtocol {
+@objc public protocol PathMenuDelegate:NSObjectProtocol {
     optional func pathMenu(menu: PathMenu, didSelectIndex idx: Int)
     optional func pathMenuDidFinishAnimationClose(menu: PathMenu)
     optional func pathMenuDidFinishAnimationOpen(menu: PathMenu)
@@ -17,20 +17,20 @@ import UIKit
     optional func pathMenuWillAnimateClose(menu: PathMenu)
 }
 
-let kPathMenuDefaultNearRadius: CGFloat = 110.0
-let kPathMenuDefaultEndRadius: CGFloat = 120.0
-let kPathMenuDefaultFarRadius: CGFloat = 140.0
-let kPathMenuDefaultStartPointX: CGFloat = UIScreen.mainScreen().bounds.width/2
-let kPathMenuDefaultStartPointY: CGFloat = UIScreen.mainScreen().bounds.height/2
-let kPathMenuDefaultTimeOffset: CGFloat = 0.036
-let kPathMenuDefaultRotateAngle: CGFloat = 0.0
-let kPathMenuDefaultMenuWholeAngle: CGFloat = CGFloat(M_PI) * 2
-let kPathMenuDefaultExpandRotation: CGFloat = -CGFloat(M_PI) * 2
-let kPathMenuDefaultCloseRotation: CGFloat = CGFloat(M_PI) * 2
-let kPathMenuDefaultAnimationDuration: CGFloat = 0.5
-let kPathMenuDefaultExpandRotateAnimationDuration: CGFloat = 2.0
-let kPathMenuDefaultCloseRotateAnimationDuration: CGFloat = 1.0
-let kPathMenuStartMenuDefaultAnimationDuration: CGFloat = 0.2
+public let kPathMenuDefaultNearRadius: CGFloat = 110.0
+public let kPathMenuDefaultEndRadius: CGFloat = 120.0
+public let kPathMenuDefaultFarRadius: CGFloat = 140.0
+public let kPathMenuDefaultStartPointX: CGFloat = UIScreen.mainScreen().bounds.width/2
+public let kPathMenuDefaultStartPointY: CGFloat = UIScreen.mainScreen().bounds.height/2
+public let kPathMenuDefaultTimeOffset: CGFloat = 0.036
+public let kPathMenuDefaultRotateAngle: CGFloat = 0.0
+public let kPathMenuDefaultMenuWholeAngle: CGFloat = CGFloat(M_PI) * 2
+public let kPathMenuDefaultExpandRotation: CGFloat = -CGFloat(M_PI) * 2
+public let kPathMenuDefaultCloseRotation: CGFloat = CGFloat(M_PI) * 2
+public let kPathMenuDefaultAnimationDuration: CGFloat = 0.5
+public let kPathMenuDefaultExpandRotateAnimationDuration: CGFloat = 2.0
+public let kPathMenuDefaultCloseRotateAnimationDuration: CGFloat = 1.0
+public let kPathMenuStartMenuDefaultAnimationDuration: CGFloat = 0.2
 
 private func RotateCGPointAroundCenter(point: CGPoint, center:CGPoint, angle: CGFloat) -> CGPoint {
     let translation: CGAffineTransform = CGAffineTransformMakeTranslation(center.x, center.y)
@@ -39,22 +39,22 @@ private func RotateCGPointAroundCenter(point: CGPoint, center:CGPoint, angle: CG
     return CGPointApplyAffineTransform(point, transformGroup)
 }
 
-class PathMenu: UIView, PathMenuItemDelegate {
+public class PathMenu: UIView, PathMenuItemDelegate {
    
-    enum State {
+    public enum State {
         case Close // Intial state
         case Expand
     }
         
-    required init(coder aDecoder: NSCoder) {
+    required public init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
     
-    override init(frame: CGRect) {
+    override public init(frame: CGRect) {
         super.init(frame: frame)
     }
     
-    convenience init(frame: CGRect!, startItem: PathMenuItem?, optionMenus aMenusArray:[PathMenuItem]?) {
+    convenience public init(frame: CGRect!, startItem: PathMenuItem?, optionMenus aMenusArray:[PathMenuItem]?) {
         self.init(frame: frame)
         
         self.backgroundColor = UIColor.clearColor()
@@ -85,8 +85,8 @@ class PathMenu: UIView, PathMenuItemDelegate {
         self.addSubview(self.startButton)
     }
 
-    var _menusArray: [PathMenuItem] = []
-    var menusArray: [PathMenuItem] {
+    private var _menusArray: [PathMenuItem] = []
+    public var menusArray: [PathMenuItem] {
         get {
             return self._menusArray
         }
@@ -100,8 +100,8 @@ class PathMenu: UIView, PathMenuItemDelegate {
         }
     }
     
-    var _startButton: PathMenuItem = PathMenuItem(frame: CGRectZero)
-    var startButton: PathMenuItem {
+    private var _startButton: PathMenuItem = PathMenuItem(frame: CGRectZero)
+    public var startButton: PathMenuItem {
         get {
             return self._startButton
         }
@@ -110,30 +110,30 @@ class PathMenu: UIView, PathMenuItemDelegate {
         }
     }
     
-    weak var delegate: PathMenuDelegate!
+    public weak var delegate: PathMenuDelegate!
 
-    var flag: Int?
-    var timer: NSTimer?
+    public var flag: Int?
+    public var timer: NSTimer?
     
-    var timeOffset: CGFloat!
-    var rotateAngle: CGFloat!
-    var menuWholeAngle: CGFloat!
-    var expandRotation: CGFloat!
-    var closeRotation: CGFloat!
-    var animationDuration: CGFloat!
-    var expandRotateAnimationDuration: CGFloat!
-    var closeRotateAnimationDuration: CGFloat!
-    var startMenuAnimationDuration: CGFloat!
-    var rotateAddButton: Bool!
+    public var timeOffset: CGFloat!
+    public var rotateAngle: CGFloat!
+    public var menuWholeAngle: CGFloat!
+    public var expandRotation: CGFloat!
+    public var closeRotation: CGFloat!
+    public var animationDuration: CGFloat!
+    public var expandRotateAnimationDuration: CGFloat!
+    public var closeRotateAnimationDuration: CGFloat!
+    public var startMenuAnimationDuration: CGFloat!
+    public var rotateAddButton: Bool!
     
-    var nearRadius: CGFloat!
-    var endRadius: CGFloat!
-    var farRadius: CGFloat!
+    public var nearRadius: CGFloat!
+    public var endRadius: CGFloat!
+    public var farRadius: CGFloat!
     
-    var motionState: State?
+    public var motionState: State?
     
-    var _startPoint: CGPoint = CGPointZero
-    var startPoint: CGPoint {
+    private var _startPoint: CGPoint = CGPointZero
+    public var startPoint: CGPoint {
         get {
             return self._startPoint
         }
@@ -145,8 +145,8 @@ class PathMenu: UIView, PathMenuItemDelegate {
     
     // Image
     
-    var _image = UIImage()
-    var image: UIImage? {
+    private var _image = UIImage()
+    public var image: UIImage? {
         get {
             return self.startButton.image
         }
@@ -155,7 +155,7 @@ class PathMenu: UIView, PathMenuItemDelegate {
         }
     }
     
-    var highlightedImage: UIImage? {
+    public var highlightedImage: UIImage? {
         get {
             return self.startButton.highlightedImage
         }
@@ -164,7 +164,7 @@ class PathMenu: UIView, PathMenuItemDelegate {
         }
     }
     
-    var contentImage: UIImage? {
+    public var contentImage: UIImage? {
         get {
             return self.startButton.contentImageView?.image
         }
@@ -173,7 +173,7 @@ class PathMenu: UIView, PathMenuItemDelegate {
         }
     }
     
-    var highlightedContentImage: UIImage? {
+    public var highlightedContentImage: UIImage? {
         get {
             return self.startButton.contentImageView?.highlightedImage
         }
@@ -184,7 +184,7 @@ class PathMenu: UIView, PathMenuItemDelegate {
     
     // UIView's methods
     
-    override func pointInside(point: CGPoint, withEvent event: UIEvent?) -> Bool {
+    override public func pointInside(point: CGPoint, withEvent event: UIEvent?) -> Bool {
         if self.motionState == State.Expand {
             return true
         } else {
@@ -193,7 +193,7 @@ class PathMenu: UIView, PathMenuItemDelegate {
         }
     }
     
-    override func animationDidStop(anim: CAAnimation!, finished flag: Bool) {
+    override public func animationDidStop(anim: CAAnimation!, finished flag: Bool) {
         if let animId: AnyObject = anim.valueForKey("id") {
             if (animId.isEqual("lastAnimation")) {
                 self.delegate?.pathMenuDidFinishAnimationClose?(self)
@@ -206,19 +206,19 @@ class PathMenu: UIView, PathMenuItemDelegate {
     
     // UIGestureRecognizer
     
-    override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
+    override public func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
         self.handleTap()
     }
     
     // PathMenuItemDelegate
     
-    func PathMenuItemTouchesBegan(item: PathMenuItem) {
+    public func PathMenuItemTouchesBegan(item: PathMenuItem) {
         if (item == self.startButton) {
             self.handleTap()
         }
     }
     
-    func PathMenuItemTouchesEnd(item:PathMenuItem) {
+    public func PathMenuItemTouchesEnd(item:PathMenuItem) {
         
         if (item == self.startButton) {
             return
@@ -251,7 +251,7 @@ class PathMenu: UIView, PathMenuItemDelegate {
     
     // Animation, Position
     
-    func handleTap() {
+    public func handleTap() {
         var state = self.motionState!
         var selector: Selector?
         var angle: CGFloat?
@@ -284,7 +284,7 @@ class PathMenu: UIView, PathMenuItemDelegate {
         }
     }
     
-    func expand() {
+    public func expand() {
         
         if self.flag == self.menusArray.count {
             self.timer?.invalidate()
@@ -326,7 +326,7 @@ class PathMenu: UIView, PathMenuItemDelegate {
         self.flag!++
     }
     
-    func close() {
+    public func close() {
         
         if (self.flag! == -1)
         {
@@ -368,7 +368,7 @@ class PathMenu: UIView, PathMenuItemDelegate {
         self.flag!--
     }
     
-    func setMenu() {
+    public func setMenu() {
         let count: Int = self.menusArray.count
         var denominator: Int?
         
@@ -410,7 +410,7 @@ class PathMenu: UIView, PathMenuItemDelegate {
         }
     }
     
-    func blowupAnimationAtPoint(p: CGPoint) -> CAAnimationGroup {
+    private func blowupAnimationAtPoint(p: CGPoint) -> CAAnimationGroup {
         let positionAnimation: CAKeyframeAnimation = CAKeyframeAnimation(keyPath: "position")
         positionAnimation.values = [NSValue(CGPoint: p)]
         positionAnimation.keyTimes = [3]
@@ -429,7 +429,7 @@ class PathMenu: UIView, PathMenuItemDelegate {
         return animationgroup
     }
     
-    func shrinkAnimationAtPoint(p: CGPoint) -> CAAnimationGroup {
+    private func shrinkAnimationAtPoint(p: CGPoint) -> CAAnimationGroup {
         let positionAnimation: CAKeyframeAnimation = CAKeyframeAnimation(keyPath: "position")
         positionAnimation.values = [NSValue(CGPoint: p)]
         positionAnimation.keyTimes = [3]
