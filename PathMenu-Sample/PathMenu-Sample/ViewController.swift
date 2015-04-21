@@ -14,7 +14,7 @@ class ViewController: UIViewController, PathMenuDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+
         let storyMenuItemImage: UIImage = UIImage(named: "bg-menuitem")!
         let storyMenuItemImagePressed: UIImage = UIImage(named: "bg-menuitem-highlighted")!
         
@@ -57,7 +57,7 @@ class ViewController: UIViewController, PathMenuDelegate {
         // Dispose of any resources that can be recreated.
     }
 
-    // PathMenuDelegate
+    //MARK: PathMenuDelegate
     
     func pathMenu(menu: PathMenu, didSelectIndex idx: Int) {
         println("Select the index : \(idx)")

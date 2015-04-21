@@ -59,7 +59,7 @@ public class PathMenuItem: UIImageView {
         return CGRectMake(CGFloat((width - width * n)/2), CGFloat((height - height * n)/2), CGFloat(width * n), CGFloat(height * n))
     }
 
-    // UIView's methods
+    //MARK: UIView's methods
     
     override public func layoutSubviews() {
         super.layoutSubviews()
@@ -74,36 +74,35 @@ public class PathMenuItem: UIImageView {
         }
     }
     
-    override public func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
+    public override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
         self.highlighted = true
         if self.delegate.respondsToSelector("PathMenuItemTouchesBegan:") {
             self.delegate.PathMenuItemTouchesBegan(self)
         }
     }
     
-    override public func touchesMoved(touches: NSSet, withEvent event: UIEvent) {
-        let location:CGPoint? = touches.anyObject()?.locationInView(self)
+    public override func touchesMoved(touches: Set<NSObject>, withEvent event: UIEvent) {
+        let touch = touches.first as? UITouch
+        let location:CGPoint? = touch?.locationInView(self)
         if let loc = location {
-            if (!CGRectContainsPoint(ScaleRect(self.bounds, n: 2.0), loc))
-            {
+            if (!CGRectContainsPoint(ScaleRect(self.bounds, n: 2.0), loc)) {
                 self.highlighted = false
             }
         }
     }
-    
-    override public func touchesEnded(touches: NSSet, withEvent event: UIEvent) {
+
+    public override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {
         self.highlighted = false
-        let location: CGPoint? = touches.anyObject()?.locationInView(self)
+        let touch = touches.first as? UITouch
+        let location:CGPoint? = touch?.locationInView(self)
         if let loc = location {
-            if (CGRectContainsPoint(ScaleRect(self.bounds, n: 2.0), loc))
-            {
+            if (CGRectContainsPoint(ScaleRect(self.bounds, n: 2.0), loc)) {
                 self.delegate.PathMenuItemTouchesEnd(self)
             }
         }
     }
     
-    override public func touchesCancelled(touches: NSSet!, withEvent event: UIEvent!) {
+    public override func touchesCancelled(touches: Set<NSObject>!, withEvent event: UIEvent!) {
         self.highlighted = false
     }
-    
 }

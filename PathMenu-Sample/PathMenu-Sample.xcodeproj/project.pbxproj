@@ -15,6 +15,13 @@
 		6E11BB341A531AC3000C37D5 /* PathMenu_SampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E11BB331A531AC3000C37D5 /* PathMenu_SampleTests.swift */; };
 		6E1F4A7F1AB6A9640041955A /* PathMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E1F4A7D1AB6A9640041955A /* PathMenu.swift */; };
 		6E1F4A801AB6A9640041955A /* PathMenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E1F4A7E1AB6A9640041955A /* PathMenuItem.swift */; };
+		BFB677581AE6B8D3007DC28B /* PathMenu.h in Headers */ = {isa = PBXBuildFile; fileRef = BFB677571AE6B8D3007DC28B /* PathMenu.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		BFB6775E1AE6B8D3007DC28B /* PathMenu.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BFB677531AE6B8D3007DC28B /* PathMenu.framework */; };
+		BFB677671AE6B8D3007DC28B /* PathMenuTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB677661AE6B8D3007DC28B /* PathMenuTests.swift */; };
+		BFB6776A1AE6B8D3007DC28B /* PathMenu.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BFB677531AE6B8D3007DC28B /* PathMenu.framework */; };
+		BFB6776B1AE6B8D3007DC28B /* PathMenu.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BFB677531AE6B8D3007DC28B /* PathMenu.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		BFB677731AE6B8DC007DC28B /* PathMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E1F4A7D1AB6A9640041955A /* PathMenu.swift */; };
+		BFB677741AE6B8DC007DC28B /* PathMenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E1F4A7E1AB6A9640041955A /* PathMenuItem.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -25,7 +32,42 @@
 			remoteGlobalIDString = 6E11BB171A531AC3000C37D5;
 			remoteInfo = "PathMenu-Sample";
 		};
+		BFB6775F1AE6B8D3007DC28B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6E11BB101A531AC3000C37D5 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BFB677521AE6B8D3007DC28B;
+			remoteInfo = PathMenu;
+		};
+		BFB677611AE6B8D3007DC28B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6E11BB101A531AC3000C37D5 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6E11BB171A531AC3000C37D5;
+			remoteInfo = "PathMenu-Sample";
+		};
+		BFB677681AE6B8D3007DC28B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6E11BB101A531AC3000C37D5 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BFB677521AE6B8D3007DC28B;
+			remoteInfo = PathMenu;
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		BFB677711AE6B8D3007DC28B /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				BFB6776B1AE6B8D3007DC28B /* PathMenu.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		6E11BB181A531AC3000C37D5 /* PathMenu-Sample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "PathMenu-Sample.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -40,6 +82,12 @@
 		6E11BB331A531AC3000C37D5 /* PathMenu_SampleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PathMenu_SampleTests.swift; sourceTree = "<group>"; };
 		6E1F4A7D1AB6A9640041955A /* PathMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PathMenu.swift; path = ../../PathMenu/PathMenu.swift; sourceTree = "<group>"; };
 		6E1F4A7E1AB6A9640041955A /* PathMenuItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PathMenuItem.swift; path = ../../PathMenu/PathMenuItem.swift; sourceTree = "<group>"; };
+		BFB677531AE6B8D3007DC28B /* PathMenu.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PathMenu.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BFB677561AE6B8D3007DC28B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BFB677571AE6B8D3007DC28B /* PathMenu.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PathMenu.h; sourceTree = "<group>"; };
+		BFB6775D1AE6B8D3007DC28B /* PathMenuTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PathMenuTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		BFB677651AE6B8D3007DC28B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BFB677661AE6B8D3007DC28B /* PathMenuTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PathMenuTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,6 +95,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BFB6776A1AE6B8D3007DC28B /* PathMenu.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -54,6 +103,21 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BFB6774F1AE6B8D3007DC28B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BFB6775A1AE6B8D3007DC28B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BFB6775E1AE6B8D3007DC28B /* PathMenu.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -65,6 +129,8 @@
 			children = (
 				6E11BB1A1A531AC3000C37D5 /* PathMenu-Sample */,
 				6E11BB301A531AC3000C37D5 /* PathMenu-SampleTests */,
+				BFB677541AE6B8D3007DC28B /* PathMenu */,
+				BFB677631AE6B8D3007DC28B /* PathMenuTests */,
 				6E11BB191A531AC3000C37D5 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -74,6 +140,8 @@
 			children = (
 				6E11BB181A531AC3000C37D5 /* PathMenu-Sample.app */,
 				6E11BB2D1A531AC3000C37D5 /* PathMenu-SampleTests.xctest */,
+				BFB677531AE6B8D3007DC28B /* PathMenu.framework */,
+				BFB6775D1AE6B8D3007DC28B /* PathMenuTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -126,7 +194,52 @@
 			name = PathMenu;
 			sourceTree = "<group>";
 		};
+		BFB677541AE6B8D3007DC28B /* PathMenu */ = {
+			isa = PBXGroup;
+			children = (
+				BFB677571AE6B8D3007DC28B /* PathMenu.h */,
+				BFB677551AE6B8D3007DC28B /* Supporting Files */,
+			);
+			path = PathMenu;
+			sourceTree = "<group>";
+		};
+		BFB677551AE6B8D3007DC28B /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				BFB677561AE6B8D3007DC28B /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		BFB677631AE6B8D3007DC28B /* PathMenuTests */ = {
+			isa = PBXGroup;
+			children = (
+				BFB677661AE6B8D3007DC28B /* PathMenuTests.swift */,
+				BFB677641AE6B8D3007DC28B /* Supporting Files */,
+			);
+			path = PathMenuTests;
+			sourceTree = "<group>";
+		};
+		BFB677641AE6B8D3007DC28B /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				BFB677651AE6B8D3007DC28B /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		BFB677501AE6B8D3007DC28B /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BFB677581AE6B8D3007DC28B /* PathMenu.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
 		6E11BB171A531AC3000C37D5 /* PathMenu-Sample */ = {
@@ -136,10 +249,12 @@
 				6E11BB141A531AC3000C37D5 /* Sources */,
 				6E11BB151A531AC3000C37D5 /* Frameworks */,
 				6E11BB161A531AC3000C37D5 /* Resources */,
+				BFB677711AE6B8D3007DC28B /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				BFB677691AE6B8D3007DC28B /* PBXTargetDependency */,
 			);
 			name = "PathMenu-Sample";
 			productName = "PathMenu-Sample";
@@ -164,6 +279,43 @@
 			productReference = 6E11BB2D1A531AC3000C37D5 /* PathMenu-SampleTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		BFB677521AE6B8D3007DC28B /* PathMenu */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BFB677701AE6B8D3007DC28B /* Build configuration list for PBXNativeTarget "PathMenu" */;
+			buildPhases = (
+				BFB6774E1AE6B8D3007DC28B /* Sources */,
+				BFB6774F1AE6B8D3007DC28B /* Frameworks */,
+				BFB677501AE6B8D3007DC28B /* Headers */,
+				BFB677511AE6B8D3007DC28B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PathMenu;
+			productName = PathMenu;
+			productReference = BFB677531AE6B8D3007DC28B /* PathMenu.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		BFB6775C1AE6B8D3007DC28B /* PathMenuTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BFB677721AE6B8D3007DC28B /* Build configuration list for PBXNativeTarget "PathMenuTests" */;
+			buildPhases = (
+				BFB677591AE6B8D3007DC28B /* Sources */,
+				BFB6775A1AE6B8D3007DC28B /* Frameworks */,
+				BFB6775B1AE6B8D3007DC28B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				BFB677601AE6B8D3007DC28B /* PBXTargetDependency */,
+				BFB677621AE6B8D3007DC28B /* PBXTargetDependency */,
+			);
+			name = PathMenuTests;
+			productName = PathMenuTests;
+			productReference = BFB6775D1AE6B8D3007DC28B /* PathMenuTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -178,6 +330,13 @@
 					};
 					6E11BB2C1A531AC3000C37D5 = {
 						CreatedOnToolsVersion = 6.1.1;
+						TestTargetID = 6E11BB171A531AC3000C37D5;
+					};
+					BFB677521AE6B8D3007DC28B = {
+						CreatedOnToolsVersion = 6.3;
+					};
+					BFB6775C1AE6B8D3007DC28B = {
+						CreatedOnToolsVersion = 6.3;
 						TestTargetID = 6E11BB171A531AC3000C37D5;
 					};
 				};
@@ -197,6 +356,8 @@
 			targets = (
 				6E11BB171A531AC3000C37D5 /* PathMenu-Sample */,
 				6E11BB2C1A531AC3000C37D5 /* PathMenu-SampleTests */,
+				BFB677521AE6B8D3007DC28B /* PathMenu */,
+				BFB6775C1AE6B8D3007DC28B /* PathMenuTests */,
 			);
 		};
 /* End PBXProject section */
@@ -213,6 +374,20 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		6E11BB2B1A531AC3000C37D5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BFB677511AE6B8D3007DC28B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BFB6775B1AE6B8D3007DC28B /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -241,6 +416,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		BFB6774E1AE6B8D3007DC28B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BFB677731AE6B8DC007DC28B /* PathMenu.swift in Sources */,
+				BFB677741AE6B8DC007DC28B /* PathMenuItem.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BFB677591AE6B8D3007DC28B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BFB677671AE6B8D3007DC28B /* PathMenuTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -248,6 +440,21 @@
 			isa = PBXTargetDependency;
 			target = 6E11BB171A531AC3000C37D5 /* PathMenu-Sample */;
 			targetProxy = 6E11BB2E1A531AC3000C37D5 /* PBXContainerItemProxy */;
+		};
+		BFB677601AE6B8D3007DC28B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = BFB677521AE6B8D3007DC28B /* PathMenu */;
+			targetProxy = BFB6775F1AE6B8D3007DC28B /* PBXContainerItemProxy */;
+		};
+		BFB677621AE6B8D3007DC28B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6E11BB171A531AC3000C37D5 /* PathMenu-Sample */;
+			targetProxy = BFB677611AE6B8D3007DC28B /* PBXContainerItemProxy */;
+		};
+		BFB677691AE6B8D3007DC28B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = BFB677521AE6B8D3007DC28B /* PathMenu */;
+			targetProxy = BFB677681AE6B8D3007DC28B /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -402,6 +609,94 @@
 			};
 			name = Release;
 		};
+		BFB6776C1AE6B8D3007DC28B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = PathMenu/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		BFB6776D1AE6B8D3007DC28B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = PathMenu/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		BFB6776E1AE6B8D3007DC28B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = PathMenuTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PathMenu-Sample.app/PathMenu-Sample";
+			};
+			name = Debug;
+		};
+		BFB6776F1AE6B8D3007DC28B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = PathMenuTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PathMenu-Sample.app/PathMenu-Sample";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -431,6 +726,22 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		BFB677701AE6B8D3007DC28B /* Build configuration list for PBXNativeTarget "PathMenu" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BFB6776C1AE6B8D3007DC28B /* Debug */,
+				BFB6776D1AE6B8D3007DC28B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		BFB677721AE6B8D3007DC28B /* Build configuration list for PBXNativeTarget "PathMenuTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BFB6776E1AE6B8D3007DC28B /* Debug */,
+				BFB6776F1AE6B8D3007DC28B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};

@@ -17,20 +17,20 @@ import UIKit
     optional func pathMenuWillAnimateClose(menu: PathMenu)
 }
 
-public let kPathMenuDefaultNearRadius: CGFloat = 110.0
-public let kPathMenuDefaultEndRadius: CGFloat = 120.0
-public let kPathMenuDefaultFarRadius: CGFloat = 140.0
-public let kPathMenuDefaultStartPointX: CGFloat = UIScreen.mainScreen().bounds.width/2
-public let kPathMenuDefaultStartPointY: CGFloat = UIScreen.mainScreen().bounds.height/2
-public let kPathMenuDefaultTimeOffset: CGFloat = 0.036
-public let kPathMenuDefaultRotateAngle: CGFloat = 0.0
-public let kPathMenuDefaultMenuWholeAngle: CGFloat = CGFloat(M_PI) * 2
-public let kPathMenuDefaultExpandRotation: CGFloat = -CGFloat(M_PI) * 2
-public let kPathMenuDefaultCloseRotation: CGFloat = CGFloat(M_PI) * 2
-public let kPathMenuDefaultAnimationDuration: CGFloat = 0.5
+public let kPathMenuDefaultNearRadius: CGFloat                    = 110.0
+public let kPathMenuDefaultEndRadius: CGFloat                     = 120.0
+public let kPathMenuDefaultFarRadius: CGFloat                     = 140.0
+public let kPathMenuDefaultStartPointX: CGFloat                   = UIScreen.mainScreen().bounds.width/2
+public let kPathMenuDefaultStartPointY: CGFloat                   = UIScreen.mainScreen().bounds.height/2
+public let kPathMenuDefaultTimeOffset: CGFloat                    = 0.036
+public let kPathMenuDefaultRotateAngle: CGFloat                   = 0.0
+public let kPathMenuDefaultMenuWholeAngle: CGFloat                = CGFloat(M_PI) * 2
+public let kPathMenuDefaultExpandRotation: CGFloat                = -CGFloat(M_PI) * 2
+public let kPathMenuDefaultCloseRotation: CGFloat                 = CGFloat(M_PI) * 2
+public let kPathMenuDefaultAnimationDuration: CGFloat             = 0.5
 public let kPathMenuDefaultExpandRotateAnimationDuration: CGFloat = 2.0
-public let kPathMenuDefaultCloseRotateAnimationDuration: CGFloat = 1.0
-public let kPathMenuStartMenuDefaultAnimationDuration: CGFloat = 0.2
+public let kPathMenuDefaultCloseRotateAnimationDuration: CGFloat  = 1.0
+public let kPathMenuStartMenuDefaultAnimationDuration: CGFloat    = 0.2
 
 private func RotateCGPointAroundCenter(point: CGPoint, center:CGPoint, angle: CGFloat) -> CGPoint {
     let translation: CGAffineTransform = CGAffineTransformMakeTranslation(center.x, center.y)
@@ -42,7 +42,7 @@ private func RotateCGPointAroundCenter(point: CGPoint, center:CGPoint, angle: CG
 public class PathMenu: UIView, PathMenuItemDelegate {
    
     public enum State {
-        case Close // Intial state
+        case Close
         case Expand
     }
         
@@ -55,8 +55,8 @@ public class PathMenu: UIView, PathMenuItemDelegate {
     }
     
     convenience public init(frame: CGRect!, startItem: PathMenuItem?, optionMenus aMenusArray:[PathMenuItem]?) {
-        self.init(frame: frame)
         
+        self.init(frame: frame)
         self.backgroundColor = UIColor.clearColor()
         
         self.timeOffset = kPathMenuDefaultTimeOffset
@@ -76,7 +76,6 @@ public class PathMenu: UIView, PathMenuItemDelegate {
         self.farRadius = kPathMenuDefaultFarRadius
  
         self.menusArray = aMenusArray!
-        
         self.motionState = State.Close
         
         self.startButton = startItem!
@@ -143,7 +142,7 @@ public class PathMenu: UIView, PathMenuItemDelegate {
         }
     }
     
-    // Image
+    //MARK: Image
     
     private var _image = UIImage()
     public var image: UIImage? {
@@ -182,13 +181,12 @@ public class PathMenu: UIView, PathMenuItemDelegate {
         }
     }
     
-    // UIView's methods
+    //MARK: UIView's methods
     
     override public func pointInside(point: CGPoint, withEvent event: UIEvent?) -> Bool {
         if self.motionState == State.Expand {
             return true
         } else {
-            // Close
             return CGRectContainsPoint(self.startButton.frame, point)
         }
     }
@@ -204,13 +202,13 @@ public class PathMenu: UIView, PathMenuItemDelegate {
         }
     }
     
-    // UIGestureRecognizer
+    //MARK: UIGestureRecognizer
     
-    override public func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
+    public override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
         self.handleTap()
     }
     
-    // PathMenuItemDelegate
+    //MARK: PathMenuItemDelegate
     
     public func PathMenuItemTouchesBegan(item: PathMenuItem) {
         if (item == self.startButton) {
@@ -249,7 +247,7 @@ public class PathMenu: UIView, PathMenuItemDelegate {
         self.delegate?.pathMenu?(self, didSelectIndex: item.tag - 1000)
     }
     
-    // Animation, Position
+    //MARK: Animation, Position
     
     public func handleTap() {
         var state = self.motionState!
@@ -293,7 +291,7 @@ public class PathMenu: UIView, PathMenuItemDelegate {
         }
         
         let tag: Int = 1000 + self.flag!
-        var item: PathMenuItem = self.viewWithTag(tag) as PathMenuItem
+        var item: PathMenuItem = self.viewWithTag(tag) as! PathMenuItem
         
         let rotateAnimation: CAKeyframeAnimation = CAKeyframeAnimation(keyPath: "transform.rotation.z")
         rotateAnimation.values = [NSNumber(float: 0.0), NSNumber(float: Float(self.expandRotation!)), NSNumber(float: 0.0)]
@@ -328,15 +326,14 @@ public class PathMenu: UIView, PathMenuItemDelegate {
     
     public func close() {
         
-        if (self.flag! == -1)
-        {
+        if (self.flag! == -1) {
             self.timer?.invalidate()
             self.timer = nil
             return
         }
         
         let tag :Int = 1000 + self.flag!
-        var item: PathMenuItem = self.viewWithTag(tag) as PathMenuItem
+        var item: PathMenuItem = self.viewWithTag(tag) as! PathMenuItem
         
         let rotateAnimation: CAKeyframeAnimation = CAKeyframeAnimation(keyPath: "transform.rotation.z")
         rotateAnimation.values = [NSNumber(float: 0.0), NSNumber(float: Float(self.closeRotation!)), NSNumber(float: 0.0)]
@@ -369,6 +366,7 @@ public class PathMenu: UIView, PathMenuItemDelegate {
     }
     
     public func setMenu() {
+        
         let count: Int = self.menusArray.count
         var denominator: Int?
         
@@ -377,7 +375,6 @@ public class PathMenu: UIView, PathMenuItemDelegate {
             item.tag = 1000 + i
             item.startPoint = self.startPoint
             
-            // avoid overlap
             if (menuWholeAngle >= CGFloat(M_PI) * 2) {
                 menuWholeAngle = menuWholeAngle! - menuWholeAngle! / CGFloat(count)
             }
