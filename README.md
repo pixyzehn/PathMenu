@@ -1,12 +1,14 @@
 #PathMenu
 
-Path 4.2 menu using CoreAnimation in Swift. Inspired by https://github.com/levey/AwesomeMenu
+Path 4.2 menu using CoreAnimation in Swift. Inspired by [AwesomeMenu](https://github.com/levey/AwesomeMenu).
 
 ##Screenshot
 ![PathMenu-Sample](https://raw.githubusercontent.com/pixyzehn/PathMenu/master/Assets/PathMenu-Sample-Demo.gif)
 ![PathMenu](https://raw.githubusercontent.com/pixyzehn/PathMenu/master/Assets/PathMenu-Demo.gif)
 
 ##Installation
+
+###Cocoapods
 
 The easiest way to get started is to use [CocoaPods](http://cocoapods.org/). Add the following line to your Podfile:
 
@@ -22,6 +24,36 @@ Then, run the following command:
 ```ruby
 pod install
 ```
+
+###Carthage
+
+[Carthage](https://github.com/Carthage/Carthage) is a decentralized dependency manager that automates the process of adding frameworks to your Cocoa application.
+
+You can install Carthage with [Homebrew](http://brew.sh/) using the following command:
+
+```bash
+$ brew update
+$ brew install carthage
+```
+
+To integrate PathMenu into your Xcode project using Carthage, specify it in your `Cartfile`:
+
+```ogdl
+github "pixyzehn/PathMenu"
+```
+
+Run `carthage update`.  
+
+
+```bash
+$ carthage update
+```
+
+###Other
+
+Add the PathMenu (including PathMenu.swift and PathMenuItem.swift) folder into your project.
+
+---
 
 ##How to use it?
 
