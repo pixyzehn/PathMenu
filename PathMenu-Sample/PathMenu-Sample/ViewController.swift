@@ -30,11 +30,11 @@ class ViewController: UIViewController, PathMenuDelegate {
         
         let starMenuItem5: PathMenuItem = PathMenuItem(image: storyMenuItemImage, highlightedImage: storyMenuItemImagePressed, ContentImage: starImage, highlightedContentImage:nil)
         
-        var menus: [PathMenuItem] = [starMenuItem1, starMenuItem2, starMenuItem3, starMenuItem4, starMenuItem5]
+        let menus: [PathMenuItem] = [starMenuItem1, starMenuItem2, starMenuItem3, starMenuItem4, starMenuItem5]
         
         let startItem: PathMenuItem = PathMenuItem(image: UIImage(named: "bg-addbutton"), highlightedImage: UIImage(named: "bg-addbutton-highlighted"), ContentImage: UIImage(named: "icon-plus"), highlightedContentImage: UIImage(named: "icon-plus-highlighted"))
         
-        var menu: PathMenu = PathMenu(frame: self.view.bounds, startItem: startItem, optionMenus: menus)
+        let menu: PathMenu = PathMenu(frame: self.view.bounds, startItem: startItem, optionMenus: menus)
         menu.delegate = self
         menu.startPoint = CGPointMake(UIScreen.mainScreen().bounds.width/2, self.view.frame.size.height - 30.0)
         menu.menuWholeAngle = CGFloat(M_PI) - CGFloat(M_PI/5)
@@ -60,25 +60,25 @@ class ViewController: UIViewController, PathMenuDelegate {
     //MARK: PathMenuDelegate
     
     func pathMenu(menu: PathMenu, didSelectIndex idx: Int) {
-        println("Select the index : \(idx)")
+        print("Select the index : \(idx)")
         self.blackView?.backgroundColor = UIColor.clearColor()
     }
     
     func pathMenuWillAnimateOpen(menu: PathMenu) {
-        println("Menu will open!")
+        print("Menu will open!")
         self.blackView?.backgroundColor = UIColor(red:0.0, green:0.0, blue:0.0, alpha:0.7)
     }
     
     func pathMenuWillAnimateClose(menu: PathMenu) {
-        println("Menu will close!")
+        print("Menu will close!")
     }
     
     func pathMenuDidFinishAnimationOpen(menu: PathMenu) {
-        println("Menu was open!")
+        print("Menu was open!")
     }
     
     func pathMenuDidFinishAnimationClose(menu: PathMenu) {
-        println("Menu was closed!")
+        print("Menu was closed!")
         self.blackView?.backgroundColor = UIColor.clearColor()
     }
 }

@@ -39,7 +39,7 @@ public class PathMenuItem: UIImageView {
         super.init(frame: frame)
     }
     
-    required public init(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
    
@@ -74,16 +74,15 @@ public class PathMenuItem: UIImageView {
         }
     }
     
-    public override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
+    public override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         self.highlighted = true
         if self.delegate.respondsToSelector("PathMenuItemTouchesBegan:") {
             self.delegate.PathMenuItemTouchesBegan(self)
         }
     }
     
-    public override func touchesMoved(touches: Set<NSObject>, withEvent event: UIEvent) {
-        let touch = touches.first as? UITouch
-        let location:CGPoint? = touch?.locationInView(self)
+    public override func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        let location:CGPoint? = touches.first?.locationInView(self)
         if let loc = location {
             if (!CGRectContainsPoint(ScaleRect(self.bounds, n: 2.0), loc)) {
                 self.highlighted = false
@@ -91,10 +90,9 @@ public class PathMenuItem: UIImageView {
         }
     }
 
-    public override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {
+    public override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
         self.highlighted = false
-        let touch = touches.first as? UITouch
-        let location:CGPoint? = touch?.locationInView(self)
+        let location:CGPoint? = touches.first?.locationInView(self)
         if let loc = location {
             if (CGRectContainsPoint(ScaleRect(self.bounds, n: 2.0), loc)) {
                 self.delegate.PathMenuItemTouchesEnd(self)
@@ -102,7 +100,7 @@ public class PathMenuItem: UIImageView {
         }
     }
     
-    public override func touchesCancelled(touches: Set<NSObject>!, withEvent event: UIEvent!) {
+    public override func touchesCancelled(touches: Set<UITouch>?, withEvent event: UIEvent?) {
         self.highlighted = false
     }
 }
