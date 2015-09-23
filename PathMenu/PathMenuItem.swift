@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-@objc public protocol PathMenuItemDelegate: NSObjectProtocol {
+public protocol PathMenuItemDelegate: class {
     func PathMenuItemTouchesBegan(item: PathMenuItem)
     func PathMenuItemTouchesEnd(item:PathMenuItem)
 }
@@ -22,7 +22,7 @@ public class PathMenuItem: UIImageView {
     public var nearPoint: CGPoint?
     public var farPoint: CGPoint?
     
-    public weak var delegate: PathMenuItemDelegate!
+    public weak var delegate: PathMenuItemDelegate?
     
     private var _highlighted: Bool = false
     override public var highlighted: Bool {
@@ -31,7 +31,7 @@ public class PathMenuItem: UIImageView {
         }
         set {
             _highlighted = newValue
-            self.contentImageView?.highlighted = newValue
+            contentImageView?.highlighted = newValue
         }
     }
     
@@ -50,57 +50,55 @@ public class PathMenuItem: UIImageView {
         self.userInteractionEnabled = true
         self.contentImageView = UIImageView(image: cimg)
         self.contentImageView?.highlightedImage = hcimg
-        self.addSubview(self.contentImageView!)
+        self.addSubview(contentImageView!)
     }
 
     private func ScaleRect(rect: CGRect, n: CGFloat) -> CGRect {
-        let width = rect.size.width
+        let width  = rect.size.width
         let height = rect.size.height
-        return CGRectMake(CGFloat((width - width * n)/2), CGFloat((height - height * n)/2), CGFloat(width * n), CGFloat(height * n))
+        return CGRectMake((width - width * n)/2, (height - height * n)/2, width * n, height * n)
     }
 
     //MARK: UIView's methods
     
     override public func layoutSubviews() {
         super.layoutSubviews()
-        if let image = self.image {
-            self.bounds = CGRectMake(0, 0, image.size.width, image.size.height)
+        if let image = image {
+            bounds = CGRectMake(0, 0, image.size.width, image.size.height)
         }
         
-        if let imageView = self.contentImageView {
+        if let imageView = contentImageView {
             let width: CGFloat! = imageView.image?.size.width
             let height: CGFloat! = imageView.image?.size.height
-            imageView.frame = CGRectMake(self.bounds.size.width/2 - width/2, self.bounds.size.height/2 - height/2, width, height)
+            imageView.frame = CGRectMake(bounds.size.width/2 - width/2, bounds.size.height/2 - height/2, width, height)
         }
     }
     
     public override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        self.highlighted = true
-        if self.delegate.respondsToSelector("PathMenuItemTouchesBegan:") {
-            self.delegate.PathMenuItemTouchesBegan(self)
-        }
+        highlighted = true
+        delegate?.PathMenuItemTouchesBegan(self)
     }
     
     public override func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        let location:CGPoint? = touches.first?.locationInView(self)
+        let location = touches.first?.locationInView(self)
         if let loc = location {
-            if (!CGRectContainsPoint(ScaleRect(self.bounds, n: 2.0), loc)) {
-                self.highlighted = false
+            if (!CGRectContainsPoint(ScaleRect(bounds, n: 2.0), loc)) {
+                highlighted = false
             }
         }
     }
 
     public override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        self.highlighted = false
+        highlighted = false
         let location:CGPoint? = touches.first?.locationInView(self)
         if let loc = location {
-            if (CGRectContainsPoint(ScaleRect(self.bounds, n: 2.0), loc)) {
-                self.delegate.PathMenuItemTouchesEnd(self)
+            if (CGRectContainsPoint(ScaleRect(bounds, n: 2.0), loc)) {
+                delegate?.PathMenuItemTouchesEnd(self)
             }
         }
     }
     
     public override func touchesCancelled(touches: Set<UITouch>?, withEvent event: UIEvent?) {
-        self.highlighted = false
+        highlighted = false
     }
 }

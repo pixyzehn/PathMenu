@@ -10,31 +10,36 @@ import UIKit
 
 class ViewController: UIViewController, PathMenuDelegate {
     
-    var blackView: UIView?
-
+    @IBOutlet weak var tableView: UITableView!
+    
+    let items = ["Ray Wenderlich", "NSHipster", "iOS Developer Tips", "Jameson Quave", "Natasha The Robot", "Coding Explorer", "That Thing In Swift", "Andrew Bancroft", "iAchieved.it", "Airspeed Velocity", "Ray Wenderlich", "NSHipster", "iOS Developer Tips", "Jameson Quave", "Natasha The Robot", "Coding Explorer", "That Thing In Swift", "Andrew Bancroft", "iAchieved.it", "Airspeed Velocity"]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        tableView.delegate = self
+        tableView.dataSource = self
 
         let storyMenuItemImage: UIImage = UIImage(named: "bg-menuitem")!
         let storyMenuItemImagePressed: UIImage = UIImage(named: "bg-menuitem-highlighted")!
         
         let starImage: UIImage = UIImage(named: "icon-star")!
         
-        let starMenuItem1: PathMenuItem = PathMenuItem(image: storyMenuItemImage, highlightedImage: storyMenuItemImagePressed, ContentImage: starImage, highlightedContentImage:nil)
+        let starMenuItem1 = PathMenuItem(image: storyMenuItemImage, highlightedImage: storyMenuItemImagePressed, ContentImage: starImage, highlightedContentImage:nil)
         
-        let starMenuItem2: PathMenuItem = PathMenuItem(image: storyMenuItemImage, highlightedImage: storyMenuItemImagePressed, ContentImage: starImage, highlightedContentImage:nil)
+        let starMenuItem2 = PathMenuItem(image: storyMenuItemImage, highlightedImage: storyMenuItemImagePressed, ContentImage: starImage, highlightedContentImage:nil)
         
-        let starMenuItem3: PathMenuItem = PathMenuItem(image: storyMenuItemImage, highlightedImage: storyMenuItemImagePressed, ContentImage: starImage, highlightedContentImage:nil)
+        let starMenuItem3 = PathMenuItem(image: storyMenuItemImage, highlightedImage: storyMenuItemImagePressed, ContentImage: starImage, highlightedContentImage:nil)
         
-        let starMenuItem4: PathMenuItem = PathMenuItem(image: storyMenuItemImage, highlightedImage: storyMenuItemImagePressed, ContentImage: starImage, highlightedContentImage:nil)
+        let starMenuItem4 = PathMenuItem(image: storyMenuItemImage, highlightedImage: storyMenuItemImagePressed, ContentImage: starImage, highlightedContentImage:nil)
         
-        let starMenuItem5: PathMenuItem = PathMenuItem(image: storyMenuItemImage, highlightedImage: storyMenuItemImagePressed, ContentImage: starImage, highlightedContentImage:nil)
+        let starMenuItem5 = PathMenuItem(image: storyMenuItemImage, highlightedImage: storyMenuItemImagePressed, ContentImage: starImage, highlightedContentImage:nil)
         
-        let menus: [PathMenuItem] = [starMenuItem1, starMenuItem2, starMenuItem3, starMenuItem4, starMenuItem5]
+        let menus = [starMenuItem1, starMenuItem2, starMenuItem3, starMenuItem4, starMenuItem5]
         
-        let startItem: PathMenuItem = PathMenuItem(image: UIImage(named: "bg-addbutton"), highlightedImage: UIImage(named: "bg-addbutton-highlighted"), ContentImage: UIImage(named: "icon-plus"), highlightedContentImage: UIImage(named: "icon-plus-highlighted"))
+        let startItem = PathMenuItem(image: UIImage(named: "bg-addbutton"), highlightedImage: UIImage(named: "bg-addbutton-highlighted"), ContentImage: UIImage(named: "icon-plus"), highlightedContentImage: UIImage(named: "icon-plus-highlighted"))
         
-        let menu: PathMenu = PathMenu(frame: self.view.bounds, startItem: startItem, optionMenus: menus)
+        let menu = PathMenu(frame: self.view.bounds, startItem: startItem, optionMenus: menus)
         menu.delegate = self
         menu.startPoint = CGPointMake(UIScreen.mainScreen().bounds.width/2, self.view.frame.size.height - 30.0)
         menu.menuWholeAngle = CGFloat(M_PI) - CGFloat(M_PI/5)
@@ -45,28 +50,18 @@ class ViewController: UIViewController, PathMenuDelegate {
         menu.endRadius = 100.0
         menu.animationDuration = 0.5
         
-        self.blackView = UIView(frame: UIScreen.mainScreen().bounds)
-        self.blackView?.addSubview(menu)
-        self.blackView?.backgroundColor = UIColor.clearColor()
-        self.view.addSubview(self.blackView!)
-        self.view.backgroundColor = UIColor(red:0.96, green:0.94, blue:0.92, alpha:1)
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        view.addSubview(menu)
+        view.backgroundColor = UIColor(red:0.96, green:0.94, blue:0.92, alpha:1)
     }
 
     //MARK: PathMenuDelegate
     
     func pathMenu(menu: PathMenu, didSelectIndex idx: Int) {
         print("Select the index : \(idx)")
-        self.blackView?.backgroundColor = UIColor.clearColor()
     }
     
     func pathMenuWillAnimateOpen(menu: PathMenu) {
         print("Menu will open!")
-        self.blackView?.backgroundColor = UIColor(red:0.0, green:0.0, blue:0.0, alpha:0.7)
     }
     
     func pathMenuWillAnimateClose(menu: PathMenu) {
@@ -79,7 +74,26 @@ class ViewController: UIViewController, PathMenuDelegate {
     
     func pathMenuDidFinishAnimationClose(menu: PathMenu) {
         print("Menu was closed!")
-        self.blackView?.backgroundColor = UIColor.clearColor()
     }
 }
 
+extension ViewController: UITableViewDelegate {
+}
+
+extension ViewController: UITableViewDataSource {
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return items.count
+    }
+
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath)
+        cell.textLabel?.text = items[indexPath.row]
+        return cell
+    }
+    
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return 1
+    }
+    
+}
