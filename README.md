@@ -62,37 +62,33 @@ Create the PathMenu by setting up the PathMenuItem.
 For the details, please refer to PathMenu-Sample.
 
 ```Swift
-let storyMenuItemImage: UIImage = UIImage(named: "bg-menuitem")!
-let storyMenuItemImagePressed: UIImage = UIImage(named: "bg-menuitem-highlighted")!
+let menuItemImage = UIImage(named: "bg-menuitem")!
+let menuItemHighlitedImage = UIImage(named: "bg-menuitem-highlighted")!
 
-let starImage: UIImage = UIImage(named: "icon-star")!
+let starImage = UIImage(named: "icon-star")!
 
-let starMenuItem1: PathMenuItem = PathMenuItem(image: storyMenuItemImage, highlightedImage: storyMenuItemImagePressed, ContentImage: starImage, highlightedContentImage:nil)
+let starMenuItem1 = PathMenuItem(image: menuItemImage, highlightedImage: menuItemHighlitedImage, contentImage: starImage)
 
-let starMenuItem2: PathMenuItem = PathMenuItem(image: storyMenuItemImage, highlightedImage: storyMenuItemImagePressed, ContentImage: starImage, highlightedContentImage:nil)
+let starMenuItem2 = PathMenuItem(image: menuItemImage, highlightedImage: menuItemHighlitedImage, contentImage: starImage)
 
-let starMenuItem3: PathMenuItem = PathMenuItem(image: storyMenuItemImage, highlightedImage: storyMenuItemImagePressed, ContentImage: starImage, highlightedContentImage:nil)
+let starMenuItem3 = PathMenuItem(image: menuItemImage, highlightedImage: menuItemHighlitedImage, contentImage: starImage)
 
-let starMenuItem4: PathMenuItem = PathMenuItem(image: storyMenuItemImage, highlightedImage: storyMenuItemImagePressed, ContentImage: starImage, highlightedContentImage:nil)
+let starMenuItem4 = PathMenuItem(image: menuItemImage, highlightedImage: menuItemHighlitedImage, contentImage: starImage)
 
-let starMenuItem5: PathMenuItem = PathMenuItem(image: storyMenuItemImage, highlightedImage: storyMenuItemImagePressed, ContentImage: starImage, highlightedContentImage:nil)
+let starMenuItem5 = PathMenuItem(image: menuItemImage, highlightedImage: menuItemHighlitedImage, contentImage: starImage)
 
-var menus: [PathMenuItem] = [starMenuItem1, starMenuItem2, starMenuItem3, starMenuItem4, starMenuItem5]
+let items = [starMenuItem1, starMenuItem2, starMenuItem3, starMenuItem4, starMenuItem5]
 
-let startItem: PathMenuItem = PathMenuItem(image: UIImage(named: "bg-addbutton"), highlightedImage: UIImage(named: "bg-addbutton-highlighted"), ContentImage: UIImage(named: "icon-plus"), highlightedContentImage: UIImage(named: "icon-plus-highlighted"))
+let startItem = PathMenuItem(image: UIImage(named: "bg-addbutton")!,
+                  highlightedImage: UIImage(named: "bg-addbutton-highlighted"),
+                      contentImage: UIImage(named: "icon-plus"),
+           highlightedContentImage: UIImage(named: "icon-plus-highlighted"))
 
-var menu: PathMenu = PathMenu(frame: self.view.bounds, startItem: startItem, optionMenus: menus)
+let menu = PathMenu(frame: view.bounds, startItem: startItem, items: items)
 menu.delegate = self
 ```
 
 And then, setup the PathMenu and some options.
-
-```Swift
-var menu: PathMenu = PathMenu(frame: self.window?.bounds, startItem: startItem, optionMenus: menus)
-menu.delegate = self
-self.window?.addSubview(menu)
-self.window?.makeKeyAndVisible()
-```
 
 The following is the options about animation and position.
 
@@ -117,28 +113,28 @@ Default values are as follows:
 
 ```Swift
 startPoint = CGPointMake(UIScreen.mainScreen().bounds.width/2, UIScreen.mainScreen().bounds.height/2)
-timeOffset = 0.036
-rotateAngle = 0.0
-menuWholeAngle = CGFloat(M_PI) * 2
-expandRotation = -CGFloat(M_PI) * 2
-closeRotation = CGFloat(M_PI) * 2
-animationDuration = 0.5
+timeOffset                    = 0.036
+rotateAngle                   = 0.0
+menuWholeAngle                = CGFloat(M_PI * 2)
+expandRotation                = -CGFloat(M_PI * 2)
+closeRotation                 = CGFloat(M_PI * 2)
+animationDuration             = 0.5
 expandRotateAnimationDuration = 2.0
-closeRotateAnimationDuration = 1.0
-startMenuAnimationDuration = 0.2
-nearRadius = 110.0
-endRadius = 120.0
-farRadius = 140.0
+closeRotateAnimationDuration  = 1.0
+startMenuAnimationDuration    = 0.2
+nearRadius                    = 110.0
+endRadius                     = 120.0
+farRadius                     = 140.0
 ```
 
 ##Delegate protocol (PathMenuDelegate)
 
 ```
-optional func pathMenu(menu: PathMenu, didSelectIndex idx: Int)
-optional func pathMenuDidFinishAnimationClose(menu: PathMenu)
-optional func pathMenuDidFinishAnimationOpen(menu: PathMenu)
-optional func pathMenuWillAnimateOpen(menu: PathMenu)
-optional func pathMenuWillAnimateClose(menu: PathMenu)
+func pathMenu(menu: PathMenu, didSelectIndex idx: Int)
+func pathMenuDidFinishAnimationClose(menu: PathMenu)
+func pathMenuDidFinishAnimationOpen(menu: PathMenu)
+func pathMenuWillAnimateOpen(menu: PathMenu)
+func pathMenuWillAnimateClose(menu: PathMenu)
 ```
 
 ## Licence
