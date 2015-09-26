@@ -9,100 +9,95 @@
 import Foundation
 import UIKit
 
-@objc public protocol PathMenuItemDelegate: NSObjectProtocol {
-    func PathMenuItemTouchesBegan(item: PathMenuItem)
-    func PathMenuItemTouchesEnd(item:PathMenuItem)
+public protocol PathMenuItemDelegate: class {
+    func pathMenuItemTouchesBegin(item: PathMenuItem)
+    func pathMenuItemTouchesEnd(item: PathMenuItem)
 }
 
 public class PathMenuItem: UIImageView {
     
     public var contentImageView: UIImageView?
+
     public var startPoint: CGPoint?
     public var endPoint: CGPoint?
     public var nearPoint: CGPoint?
     public var farPoint: CGPoint?
     
-    public weak var delegate: PathMenuItemDelegate!
+    public weak var delegate: PathMenuItemDelegate?
     
-    private var _highlighted: Bool = false
     override public var highlighted: Bool {
-        get {
-            return _highlighted
-        }
-        set {
-            _highlighted = newValue
-            self.contentImageView?.highlighted = newValue
+        didSet {
+            contentImageView?.highlighted = highlighted
         }
     }
-    
+
     override public init(frame: CGRect) {
         super.init(frame: frame)
     }
     
-    required public init(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
    
-    convenience public init(image:UIImage!, highlightedImage himg:UIImage?, ContentImage cimg:UIImage?, highlightedContentImage hcimg:UIImage?) {
+    convenience public init(image: UIImage,
+            highlightedImage himg: UIImage? = nil,
+                contentImage cimg: UIImage? = nil,
+    highlightedContentImage hcimg: UIImage? = nil) {
+
         self.init(frame: CGRectZero)
         self.image = image
         self.highlightedImage = himg
-        self.userInteractionEnabled = true
         self.contentImageView = UIImageView(image: cimg)
         self.contentImageView?.highlightedImage = hcimg
-        self.addSubview(self.contentImageView!)
+        self.userInteractionEnabled = true
+        self.addSubview(contentImageView!)
     }
 
     private func ScaleRect(rect: CGRect, n: CGFloat) -> CGRect {
-        let width = rect.size.width
+        let width  = rect.size.width
         let height = rect.size.height
-        return CGRectMake(CGFloat((width - width * n)/2), CGFloat((height - height * n)/2), CGFloat(width * n), CGFloat(height * n))
+        return CGRectMake((width - width * n)/2, (height - height * n)/2, width * n, height * n)
     }
 
     //MARK: UIView's methods
     
     override public func layoutSubviews() {
         super.layoutSubviews()
-        if let image = self.image {
-            self.bounds = CGRectMake(0, 0, image.size.width, image.size.height)
+        if let image = image {
+            bounds = CGRectMake(0, 0, image.size.width, image.size.height)
         }
         
-        if let imageView = self.contentImageView {
-            let width: CGFloat! = imageView.image?.size.width
-            let height: CGFloat! = imageView.image?.size.height
-            imageView.frame = CGRectMake(self.bounds.size.width/2 - width/2, self.bounds.size.height/2 - height/2, width, height)
+        if let imageView = contentImageView,
+                let width = imageView.image?.size.width,
+                    let height = imageView.image?.size.height {
+
+            imageView.frame = CGRectMake(bounds.size.width/2 - width/2, bounds.size.height/2 - height/2, width, height)
         }
     }
     
-    public override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
-        self.highlighted = true
-        if self.delegate.respondsToSelector("PathMenuItemTouchesBegan:") {
-            self.delegate.PathMenuItemTouchesBegan(self)
-        }
+    public override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        highlighted = true
+        delegate?.pathMenuItemTouchesBegin(self)
     }
     
-    public override func touchesMoved(touches: Set<NSObject>, withEvent event: UIEvent) {
-        let touch = touches.first as? UITouch
-        let location:CGPoint? = touch?.locationInView(self)
-        if let loc = location {
-            if (!CGRectContainsPoint(ScaleRect(self.bounds, n: 2.0), loc)) {
-                self.highlighted = false
+    public override func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        if let location = touches.first?.locationInView(self) {
+            if !CGRectContainsPoint(ScaleRect(bounds, n: 2.0), location) {
+                highlighted = false
             }
         }
     }
 
-    public override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {
-        self.highlighted = false
-        let touch = touches.first as? UITouch
-        let location:CGPoint? = touch?.locationInView(self)
-        if let loc = location {
-            if (CGRectContainsPoint(ScaleRect(self.bounds, n: 2.0), loc)) {
-                self.delegate.PathMenuItemTouchesEnd(self)
+    public override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        highlighted = false
+        if let location = touches.first?.locationInView(self) {
+            if CGRectContainsPoint(ScaleRect(bounds, n: 2.0), location) {
+                delegate?.pathMenuItemTouchesEnd(self)
             }
         }
     }
     
-    public override func touchesCancelled(touches: Set<NSObject>!, withEvent event: UIEvent!) {
-        self.highlighted = false
+    public override func touchesCancelled(touches: Set<UITouch>?, withEvent event: UIEvent?) {
+        highlighted = false
     }
 }
