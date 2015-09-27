@@ -20,34 +20,6 @@
                ReferencedContainer = "container:PathMenu-Sample.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "NO"
-            buildForArchiving = "NO"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "6E11BB2C1A531AC3000C37D5"
-               BuildableName = "PathMenu-SampleTests.xctest"
-               BlueprintName = "PathMenu-SampleTests"
-               ReferencedContainer = "container:PathMenu-Sample.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "NO"
-            buildForArchiving = "NO"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "BFB6775C1AE6B8D3007DC28B"
-               BuildableName = "PathMenuTests.xctest"
-               BlueprintName = "PathMenuTests"
-               ReferencedContainer = "container:PathMenu-Sample.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
@@ -56,26 +28,6 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "6E11BB2C1A531AC3000C37D5"
-               BuildableName = "PathMenu-SampleTests.xctest"
-               BlueprintName = "PathMenu-SampleTests"
-               ReferencedContainer = "container:PathMenu-Sample.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "BFB6775C1AE6B8D3007DC28B"
-               BuildableName = "PathMenuTests.xctest"
-               BlueprintName = "PathMenuTests"
-               ReferencedContainer = "container:PathMenu-Sample.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
