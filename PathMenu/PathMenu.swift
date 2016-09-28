@@ -136,7 +136,22 @@ public class PathMenu: UIView, PathMenuItemDelegate, CAAnimationDelegate {
     public var endRadius: CGFloat!
     public var farRadius: CGFloat!
 
-    public var motionState: State?
+    public var motionState: State? {
+        didSet {
+            let duration = Double(animationDuration)
+            if motionState == .Close {
+                let backgroundQueue = dispatch_get_global_queue(QOS_CLASS_BACKGROUND, 0)
+                dispatch_async(backgroundQueue, {
+                    NSThread.sleepForTimeInterval(duration)
+                    dispatch_async(dispatch_get_main_queue(), {
+                        self.blurView.hidden = true
+                    })
+                })
+            } else {
+                blurView.hidden = false
+            }
+        }
+    }
 
     public var startPoint: CGPoint = CGPointZero {
         didSet {
@@ -238,7 +253,7 @@ public class PathMenu: UIView, PathMenuItemDelegate, CAAnimationDelegate {
 
         switch state {
         case .Close:
-            blurView.hidden = false
+            //blurView.hidden = false
             setMenu()
             delegate?.pathMenuWillAnimateOpen(self)
             selector = #selector(PathMenu.expand)
@@ -246,7 +261,7 @@ public class PathMenu: UIView, PathMenuItemDelegate, CAAnimationDelegate {
             motionState = .Expand
             angle = CGFloat(M_PI_4) + CGFloat(M_PI)
         case .Expand:
-            blurView.hidden = true
+            //blurView.hidden = true
             delegate?.pathMenuWillAnimateClose(self)
             selector = #selector(PathMenu.close)
             flag = menuItems.count - 1
@@ -419,15 +434,15 @@ public class PathMenu: UIView, PathMenuItemDelegate, CAAnimationDelegate {
 
         let scaleAnimation = CABasicAnimation(keyPath: "transform")
         scaleAnimation.toValue = NSValue(CATransform3D: CATransform3DMakeScale(0.01, 0.01, 1))
-
+        
         let opacityAnimation = CABasicAnimation(keyPath: "opacity")
         opacityAnimation.toValue = NSNumber(float: 0.0)
-
+        
         let animationgroup = CAAnimationGroup()
         animationgroup.animations = [positionAnimation, scaleAnimation, opacityAnimation]
         animationgroup.duration = CFTimeInterval(animationDuration!)
         animationgroup.fillMode = kCAFillModeForwards
-
+        
         return animationgroup
     }
 }
