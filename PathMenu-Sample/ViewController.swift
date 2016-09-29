@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import PathMenu
 
 class ViewController: UIViewController {
     
@@ -41,7 +42,7 @@ class ViewController: UIViewController {
         
         let menu = PathMenu(frame: view.bounds, startItem: startItem, items: items)
         menu.delegate = self
-        menu.startPoint     = CGPointMake(UIScreen.mainScreen().bounds.width/2, view.frame.size.height - 30.0)
+        menu.startPoint     = CGPoint(x: UIScreen.main.bounds.width/2, y: view.frame.size.height - 30.0)
         menu.menuWholeAngle = CGFloat(M_PI) - CGFloat(M_PI/5)
         menu.rotateAngle    = -CGFloat(M_PI_2) + CGFloat(M_PI/5) * 1/2
         menu.timeOffset     = 0.0
@@ -57,23 +58,23 @@ class ViewController: UIViewController {
 }
 
 extension ViewController: PathMenuDelegate {
-    func pathMenu(menu: PathMenu, didSelectIndex idx: Int) {
-        print("Select the index : \(idx)")
+    func didSelect(on menu: PathMenu, index: Int) {
+        print("Select the index : \(index)")
     }
     
-    func pathMenuWillAnimateOpen(menu: PathMenu) {
+    func willStartAnimationOpen(on menu: PathMenu) {
         print("Menu will open!")
     }
     
-    func pathMenuWillAnimateClose(menu: PathMenu) {
+    func willStartAnimationClose(on menu: PathMenu) {
         print("Menu will close!")
     }
     
-    func pathMenuDidFinishAnimationOpen(menu: PathMenu) {
+    func didFinishAnimationOpen(on menu: PathMenu) {
         print("Menu was open!")
     }
     
-    func pathMenuDidFinishAnimationClose(menu: PathMenu) {
+    func didFinishAnimationClose(on menu: PathMenu) {
         print("Menu was closed!")
     }
 }
@@ -83,17 +84,17 @@ extension ViewController: UITableViewDelegate {
 
 extension ViewController: UITableViewDataSource {
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return items.count
     }
 
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath)
-        cell.textLabel?.text = items[indexPath.row]
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+        cell.textLabel?.text = items[(indexPath as NSIndexPath).row]
         return cell
     }
     
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     

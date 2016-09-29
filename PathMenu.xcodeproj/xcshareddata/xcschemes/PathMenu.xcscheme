@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0700"
+   LastUpgradeVersion = "0800"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "6E11BB171A531AC3000C37D5"
-               BuildableName = "PathMenu-Sample.app"
-               BlueprintName = "PathMenu-Sample"
-               ReferencedContainer = "container:PathMenu-Sample.xcodeproj">
+               BlueprintIdentifier = "BFB677521AE6B8D3007DC28B"
+               BuildableName = "PathMenu.framework"
+               BlueprintName = "PathMenu"
+               ReferencedContainer = "container:PathMenu.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -35,7 +35,7 @@
             BlueprintIdentifier = "6E11BB171A531AC3000C37D5"
             BuildableName = "PathMenu-Sample.app"
             BlueprintName = "PathMenu-Sample"
-            ReferencedContainer = "container:PathMenu-Sample.xcodeproj">
+            ReferencedContainer = "container:PathMenu.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -51,16 +51,15 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "6E11BB171A531AC3000C37D5"
-            BuildableName = "PathMenu-Sample.app"
-            BlueprintName = "PathMenu-Sample"
-            ReferencedContainer = "container:PathMenu-Sample.xcodeproj">
+            BlueprintIdentifier = "BFB677521AE6B8D3007DC28B"
+            BuildableName = "PathMenu.framework"
+            BlueprintName = "PathMenu"
+            ReferencedContainer = "container:PathMenu.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
@@ -70,16 +69,15 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "6E11BB171A531AC3000C37D5"
-            BuildableName = "PathMenu-Sample.app"
-            BlueprintName = "PathMenu-Sample"
-            ReferencedContainer = "container:PathMenu-Sample.xcodeproj">
+            BlueprintIdentifier = "BFB677521AE6B8D3007DC28B"
+            BuildableName = "PathMenu.framework"
+            BlueprintName = "PathMenu"
+            ReferencedContainer = "container:PathMenu.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">
