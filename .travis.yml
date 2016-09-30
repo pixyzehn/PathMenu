@@ -1,0 +1,4 @@
+osx_image: xcode8
+language: objective-c
+install: gem install xcpretty
+script: xcodebuild -project PathMenu.xcodeproj -scheme PathMenu | xcpretty --color; exit ${PIPESTATUS[0]}
