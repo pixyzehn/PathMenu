@@ -2,11 +2,10 @@
 
 [![Platform](http://img.shields.io/badge/platform-ios-blue.svg?style=flat
 )](https://developer.apple.com/iphone/index.action)
-[![Language](http://img.shields.io/badge/language-swift-brightgreen.svg?style=flat
-)](https://developer.apple.com/swift)
+![Swift3.0](https://img.shields.io/badge/Swift-3.0-blue.svg?style=flat)
+[![Build Status](https://travis-ci.org/pixyzehn/PathMenu.svg?branch=master)](https://travis-ci.org/pixyzehn/PathMenu)
 [![License](http://img.shields.io/badge/license-MIT-lightgrey.svg?style=flat
 )](http://mit-license.org)
-[![CircleCI](https://circleci.com/gh/pixyzehn/PathMenu/tree/master.svg?style=shield)](https://circleci.com/gh/pixyzehn/PathMenu/tree/master)
 
 Path 4.2 menu using CoreAnimation in Swift. Inspired by [AwesomeMenu](https://github.com/levey/AwesomeMenu).
 
@@ -138,11 +137,11 @@ farRadius                     = 140.0
 ##Delegate protocol (PathMenuDelegate)
 
 ```
-func pathMenu(menu: PathMenu, didSelectIndex idx: Int)
-func pathMenuDidFinishAnimationClose(menu: PathMenu)
-func pathMenuDidFinishAnimationOpen(menu: PathMenu)
-func pathMenuWillAnimateOpen(menu: PathMenu)
-func pathMenuWillAnimateClose(menu: PathMenu)
+func didSelect(on menu: PathMenu, index: Int)
+func didFinishAnimationClose(on menu: PathMenu)
+func didFinishAnimationOpen(on menu: PathMenu)
+func willStartAnimationOpen(on menu: PathMenu)
+func willStartAnimationClose(on menu: PathMenu)
 ```
 
 ## Licence

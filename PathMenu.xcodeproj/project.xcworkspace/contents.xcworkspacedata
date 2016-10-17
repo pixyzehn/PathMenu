@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:PathMenu-Sample.xcodeproj">
+      location = "self:/Users/hiroki.nagasawa/Developer/ios/PathMenu/PathMenu.xcodeproj">
    </FileRef>
 </Workspace>
