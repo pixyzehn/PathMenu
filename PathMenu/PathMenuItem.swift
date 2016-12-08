@@ -19,7 +19,7 @@ public class PathMenuItem: UIImageView {
     public var endPoint: CGPoint = CGPoint.zero
     public var nearPoint: CGPoint = CGPoint.zero
     public var farPoint: CGPoint = CGPoint.zero
-
+    
     public var contentImageView: UIImageView?
     public weak var delegate: PathMenuItemDelegate?
     
@@ -28,7 +28,7 @@ public class PathMenuItem: UIImageView {
             contentImageView?.isHighlighted = isHighlighted
         }
     }
-
+    
     public override init(frame: CGRect) {
         super.init(frame: frame)
     }
@@ -36,12 +36,12 @@ public class PathMenuItem: UIImageView {
     public required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
-   
+    
     public convenience init(image: UIImage,
-        highlightedImage: UIImage? = nil,
-        contentImage: UIImage? = nil,
-        highlightedContentImage: UIImage? = nil
-    ) {
+                            highlightedImage: UIImage? = nil,
+                            contentImage: UIImage? = nil,
+                            highlightedContentImage: UIImage? = nil
+        ) {
         self.init(frame: CGRect.zero)
         self.image = image
         self.highlightedImage = highlightedImage
@@ -59,11 +59,12 @@ public class PathMenuItem: UIImageView {
             bounds = CGRect(x: 0, y: 0, width: image.size.width, height: image.size.height)
         }
         
+        
         if
-            let imageView = contentImageView,
-            let width = imageView.image?.size.width,
-            let height = imageView.image?.size.height
+            let imageView = contentImageView
         {
+            let width = self.bounds.width
+            let height = self.bounds.height
             let x = bounds.size.width / 2 - width / 2
             let y = bounds.size.height / 2 - height / 2
             imageView.frame = CGRect(x: x, y: y, width: width, height: height)
@@ -97,7 +98,7 @@ public class PathMenuItem: UIImageView {
     }
     
     // MARK: Private method
-
+    
     private func scale(rect: CGRect, n: CGFloat) -> CGRect {
         let width = rect.size.width
         let height = rect.size.height
