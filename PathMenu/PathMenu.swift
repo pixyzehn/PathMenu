@@ -104,18 +104,18 @@ public class PathMenu: UIView {
     
     // MARK: Image
     
-    public var image: UIImage? {
-        didSet {
-            startButton?.image = image
-        }
-    }
-
-    public var highlightedImage: UIImage? {
-        didSet {
-            startButton?.highlightedImage = highlightedImage
-        }
-    }
-    
+//    public var image: UIImage? {
+//        didSet {
+//            startButton?.image = image
+//        }
+//    }
+//
+//    public var highlightedImage: UIImage? {
+//        didSet {
+//            startButton?.highlightedImage = highlightedImage
+//        }
+//    }
+//    
     public var contentImage: UIImage? {
         didSet {
             startButton?.contentImageView?.image = contentImage
