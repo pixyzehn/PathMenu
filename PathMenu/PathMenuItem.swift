@@ -55,7 +55,8 @@ public class PathMenuItem: UIImageView {
     
     public override func layoutSubviews() {
         super.layoutSubviews()
-        if let image = image {
+        if let image = image,
+            bounds == CGRect.zero {
             bounds = CGRect(x: 0, y: 0, width: image.size.width, height: image.size.height)
         }
         
@@ -63,11 +64,13 @@ public class PathMenuItem: UIImageView {
         if
             let imageView = contentImageView
         {
-            let width = self.bounds.width * 0.8
-            let height = self.bounds.height * 0.8
-            let x = bounds.size.width / 2 - width / 2
-            let y = bounds.size.height / 2 - height / 2
+            let width = self.bounds.width * 0.6
+            let height = self.bounds.height * 0.6
+            let x = self.bounds.size.width / 2 - width / 2
+            let y = self.bounds.size.height / 2 - height / 2
             imageView.frame = CGRect(x: x, y: y, width: width, height: height)
+            imageView.contentMode = .scaleAspectFit
+            self.contentMode = .scaleAspectFit
         }
     }
     
