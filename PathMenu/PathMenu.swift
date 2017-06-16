@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-public protocol PathMenuDelegate: class {
+@objc public protocol PathMenuDelegate: class {
     func didSelect(on menu: PathMenu, index: Int)
     func didFinishAnimationClose(on menu: PathMenu)
     func didFinishAnimationOpen(on menu: PathMenu)
