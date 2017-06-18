@@ -1,4 +1,4 @@
-#PathMenu
+# PathMenu
 
 [![Platform](http://img.shields.io/badge/platform-ios-blue.svg?style=flat
 )](https://developer.apple.com/iphone/index.action)
@@ -9,13 +9,14 @@
 
 Path 4.2 menu using CoreAnimation in Swift. Inspired by [AwesomeMenu](https://github.com/levey/AwesomeMenu).
 
-##Screenshot
+## Screenshot
+
 ![PathMenu-Sample](https://raw.githubusercontent.com/pixyzehn/PathMenu/master/Assets/PathMenu-Sample-Demo.gif)
 ![PathMenu](https://raw.githubusercontent.com/pixyzehn/PathMenu/master/Assets/PathMenu-Demo.gif)
 
-##Installation
+## Installation
 
-###Cocoapods
+### Cocoapods
 
 The easiest way to get started is to use [CocoaPods](http://cocoapods.org/). Add the following line to your Podfile:
 
@@ -32,7 +33,7 @@ Then, run the following command:
 pod install
 ```
 
-###Carthage
+### Carthage
 
 [Carthage](https://github.com/Carthage/Carthage) is a decentralized dependency manager that automates the process of adding frameworks to your Cocoa application.
 
@@ -45,7 +46,7 @@ $ brew install carthage
 
 To integrate PathMenu into your Xcode project using Carthage, specify it in your `Cartfile`:
 
-```ogdl
+```bash
 github "pixyzehn/PathMenu"
 ```
 
@@ -56,19 +57,19 @@ Run `carthage update`.
 $ carthage update
 ```
 
-###Other
+### Other
 
 Add the PathMenu (including PathMenu.swift and PathMenuItem.swift) folder into your project.
 
 ---
 
-##How to use it?
+## How to use it?
 
 Create the PathMenu by setting up the PathMenuItem.
 
 For the details, please refer to PathMenu-Sample.
 
-```Swift
+```swift
 let menuItemImage = UIImage(named: "bg-menuitem")!
 let menuItemHighlitedImage = UIImage(named: "bg-menuitem-highlighted")!
 
@@ -103,7 +104,7 @@ PathMenu-Sample project  is similar to real Path’s menu.
 
 Quote from the PathMenu-Sample project.
 
-```Swift
+```swift
 menu.startPoint = CGPointMake(UIScreen.mainScreen().bounds.width/2, self.view.frame.size.height - 30.0)
 menu.menuWholeAngle = CGFloat(M_PI) - CGFloat(M_PI/5)
 menu.rotateAngle = -CGFloat(M_PI_2) + CGFloat(M_PI/5) * 1/2
@@ -118,7 +119,7 @@ The order is farRadius→nearRadius→endRadius.
 
 Default values are as follows:
 
-```Swift
+```swift
 startPoint = CGPointMake(UIScreen.mainScreen().bounds.width/2, UIScreen.mainScreen().bounds.height/2)
 timeOffset                    = 0.036
 rotateAngle                   = 0.0
@@ -134,9 +135,9 @@ endRadius                     = 120.0
 farRadius                     = 140.0
 ```
 
-##Delegate protocol (PathMenuDelegate)
+## Delegate protocol (PathMenuDelegate)
 
-```
+```swift
 func didSelect(on menu: PathMenu, index: Int)
 func didFinishAnimationClose(on menu: PathMenu)
 func didFinishAnimationOpen(on menu: PathMenu)
