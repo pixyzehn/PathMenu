@@ -152,7 +152,7 @@ public class PathMenu: UIView {
             selector = #selector(expand)
             flag = 0
             motionState = .expand
-            angle = (CGFloat.pi / 2) + CGFloat.pi
+            angle = (CGFloat.pi / 4) + CGFloat.pi
         case .expand:
             delegate?.willStartAnimationClose(on: self)
             selector = #selector(close)
@@ -362,7 +362,7 @@ extension PathMenu: PathMenuItemDelegate {
         motionState = .close
         delegate?.willStartAnimationClose(on: self)
         
-        let angle = motionState == .expand ? (CGFloat.pi / 2) + CGFloat.pi : 0.0
+        let angle = motionState == .expand ? (CGFloat.pi / 4) + CGFloat.pi : 0.0
         UIView.animate(withDuration: Double(startMenuAnimationDuration), animations: { [weak self] in
             self?.startButton?.transform = CGAffineTransform(rotationAngle: angle)
         }, completion: { [weak self] _ in
