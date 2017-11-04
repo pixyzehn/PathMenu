@@ -1,3 +1,5 @@
+**Notice: PathMenu is no longer being maintained/updated.**
+
 # PathMenu
 
 [![Platform](http://img.shields.io/badge/platform-ios-blue.svg?style=flat
