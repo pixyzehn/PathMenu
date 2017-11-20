@@ -173,7 +173,7 @@ public class PathMenu: UIView {
         }
     }
     
-    public func expand() {
+    @objc public func expand() {
         if flag == menuItems.count {
             timer?.invalidate()
             timer = nil
@@ -215,7 +215,7 @@ public class PathMenu: UIView {
         flag += 1
     }
     
-    public func close() {
+    @objc public func close() {
         if flag == -1 {
             timer?.invalidate()
             timer = nil
