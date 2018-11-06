@@ -341,9 +341,6 @@ public class PathMenu: UIView {
 extension PathMenu: PathMenuItemDelegate {
     public func touchesBegin(on item: PathMenuItem) {
         if item == startButton { handleTap() }
-    }
-    
-    public func touchesEnd(on item: PathMenuItem) {
         if item == startButton { return }
         
         let blowup = blowupAnimation(at: item.center)
@@ -365,12 +362,16 @@ extension PathMenu: PathMenuItemDelegate {
         let angle = motionState == .expand ? CGFloat(M_PI_4) + CGFloat(M_PI) : 0.0
         UIView.animate(withDuration: Double(startMenuAnimationDuration), animations: { [weak self] in
             self?.startButton?.transform = CGAffineTransform(rotationAngle: angle)
-        }, completion: { [weak self] _ in
-            guard let strongSelf = self else { return }
-            strongSelf.delegate?.didFinishAnimationClose(on: strongSelf)
+            }, completion: { [weak self] _ in
+                guard let strongSelf = self else { return }
+                strongSelf.delegate?.didFinishAnimationClose(on: strongSelf)
         })
         
         delegate?.didSelect(on: self, index: item.tag - 1000)
+    }
+    
+    public func touchesEnd(on item: PathMenuItem) {
+
     }
 }
 
